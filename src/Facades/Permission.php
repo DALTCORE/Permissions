@@ -72,7 +72,6 @@ class Permission {
      *
      * @param string $roleName Role name
      * @param string $permissionName Permission name
-     *
      * @return mixed
      */
     public static function addPermissionToRole($roleName, $permissionName)
@@ -90,7 +89,7 @@ class Permission {
      *
      * @param string $roleName Role name
      * @param string $permissionName Permission name
-     *
+     * 
      * @return mixed
      */
     public static function dropPermissionFromRole($roleName, $permissionName)
