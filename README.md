@@ -27,7 +27,7 @@ php artisan vendor:publish --tag=dpm-migrations
 
 Run migrations
 ```bash
-php artisan migrage
+php artisan migrate
 ```
 
 Add trait to User model
