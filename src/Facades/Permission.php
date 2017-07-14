@@ -68,6 +68,42 @@ class Permission {
     }
 
     /**
+     * Add permission to Role
+     *
+     * @param string $roleName Role name
+     * @param string $permissionName Permission name
+     * 
+     * @return mixed
+     */
+    public static function addPermissionToRole($roleName, $permissionName)
+    {
+        $permission = Permissions::where('name', $permissionName)->first();
+        $role = Role::where('name', $roleName)->first();
+
+        $role->permissions()->attach($permission->id);
+
+        return true;
+    }
+
+    /**
+     * Drop permission from Role
+     *
+     * @param string $roleName Role name
+     * @param string $permissionName Permission name
+     *
+     * @return mixed
+     */
+    public static function dropPermissionFromRole($roleName, $permissionName)
+    {
+        $permission = Permissions::where('name', $permissionName)->first();
+        $role = Role::where('name', $roleName)->first();
+
+        $role->permissions()->detach($permission->id);
+
+        return true;
+    }
+
+    /**
      * Give user a specific role
      *
      * @param object $user Instance of user model
