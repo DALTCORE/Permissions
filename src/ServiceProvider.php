@@ -1,6 +1,6 @@
 <?php
 
-namespace Daltcore\Skeleton;
+namespace DALTCORE\Permissions;
 
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
@@ -40,8 +40,6 @@ class ServiceProvider extends BaseServiceProvider
     public function boot()
     {
         $this->registerMigrations();
-        $this->registerSeeds();
-        $this->registerConfigurations();
     }
 
     /**
@@ -54,35 +52,7 @@ class ServiceProvider extends BaseServiceProvider
     {
         $this->publishes([
             $this->packagePath('database/migrations') => database_path('/migrations')
-        ], 'migrations');
-    }
-
-    /**
-     * Register the package database seeds
-     *
-     * @return void
-     */
-    protected function registerSeeds()
-    {
-        $this->publishes([
-            $this->packagePath('database/seeds') => database_path('/seeds')
-        ], 'seeds');
-    }
-
-    /**
-     * Register the package configurations
-     *
-     * @see http://laravel.com/docs/master/packages#configuration
-     * @return void
-     */
-    protected function registerConfigurations()
-    {
-        $this->mergeConfigFrom(
-            $this->packagePath('config/config.php'), 'skeleton'
-        );
-        $this->publishes([
-            $this->packagePath('config/config.php') => config_path('skeleton.php'),
-        ], 'config');
+        ], 'dpm-migrations');
     }
 
     /**

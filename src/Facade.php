@@ -1,6 +1,8 @@
 <?php
 
-namespace Daltcore\Skeleton;
+namespace DALTCORE\Permissions;
+
+use DALTCORE\Permissions\Facades\Permission;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {
@@ -9,6 +11,6 @@ class Facade extends \Illuminate\Support\Facades\Facade
      */
     protected static function getFacadeAccessor()
     {
-        return 'Permission';
+        return new Permission();
     }
 }
