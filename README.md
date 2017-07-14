@@ -1,74 +1,92 @@
-# skeleton
+# Permissions
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Software License][ico-license]](LICENSE.md)
-[![Build Status][ico-travis]][link-travis]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
-[![Total Downloads][ico-downloads]][link-downloads]
-
-
-**NOTE:**
-- Replace ```:author_name``` ```:author_username``` ```:author_website``` ```:author_email``` ```skeleton``` ```Skeleton``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md), [PackageServiceProvider.php](src/PackageServiceProvider.php) and [composer.json](composer.json) files.
-- Rename the file [PackageServiceProvider.php](src/PackageServiceProvider.php) and the Provider class to reflect the Skeleton.
-- Delete the above lines up and including **NOTE:**.
-
-This is where your description should go. Try and limit it to a paragraph or two, and maybe throw in a mention of what
-PSRs you support to avoid any confusion with users and contributors.
+Laravel permissions handler, on your own model
 
 ## Install
 
 Via Composer
 
 ``` bash
-$ composer require daltcore/skeleton
+$ composer require daltcore/laravel-permissions
+```
+
+In your config/app.php at the Package Service Providers
+``` php
+DALTCORE\Permissions\ServiceProvider::class,
+```
+
+In your config/app.php at the Class Aliases
+``` php
+'Permission' => DALTCORE\Permissions\Facade::class,
+```
+
+Publish migrations
+```bash
+php artisan vendor:publish --tag=dpm-migrations
+```
+
+Run migrations
+```bash
+php artisan migrage
+```
+
+Add trait to User model
+```php
+use DALTCORE\Permissions\Traits\Permissible;
 ```
 
 ## Usage
 
-``` php
-$skeleton = new League\Skeleton();
-echo $skeleton->echoPhrase('Hello, League!');
+Add a role
+```php
+Permission::addRole('admin');
 ```
 
-## Change log
-
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
+Add a permission
+```php
+Permission::addPermission('create-users');
 ```
 
-## Contributing
+Link permission to role
+```php
+Permission::addPermissionToRole('admin', 'create-users');
+```
 
-Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
+Link role to user
+```php
+User::find(1)->giveRole('admin');
+```
 
-## Security
+Check if user has role
+```php
+User::find(1)->hasRole('admin');
+```
 
-If you discover any security related issues, please contact [LaraLeague](https://github.com/lara-league).
+Check if user has permission
+```php
+User::find(1)->hasPermission('create-users');
+```
 
-## Credits
+Drop role from user
+```php
+User::find(1)->dropRole('admin');
+```
 
-- [:author_name][link-author]
-- [All Contributors][link-contributors]
+Drop permission from role
+```php
+Permission::dropPermissionFromRole('admin', 'create-users');
+```
+
+Remove a permission
+```php
+Permission::removePermission('admin');
+```
+
+Remove a role
+```php
+Permission::removeRole('admin');
+```
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/league/skeleton.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/thephpleague/skeleton/master.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/thephpleague/skeleton.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/thephpleague/skeleton.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/league/skeleton.svg?style=flat-square
-
-[link-packagist]: https://packagist.org/packages/league/skeleton
-[link-travis]: https://travis-ci.org/thephpleague/skeleton
-[link-scrutinizer]: https://scrutinizer-ci.com/g/thephpleague/skeleton/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/thephpleague/skeleton
-[link-downloads]: https://packagist.org/packages/league/skeleton
-[link-author]: https://github.com/:author_username
-[link-contributors]: ../../contributors
