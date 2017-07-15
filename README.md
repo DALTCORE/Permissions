@@ -100,6 +100,22 @@ Route::group(['middleware' => 'permission:create-users'], function () {
 Route::group(['middleware' => 'role:admin'], function () {
 ```
 
+## Blade directives
+```php
+@hasrole('admin')
+I'm admin
+@else
+I'm not admin
+@endhasrole
+
+@haspermission('create-users')
+I can create users
+@else
+I cannot create users
+@endhaspermission
+
+```
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
