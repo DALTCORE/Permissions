@@ -101,7 +101,7 @@ Route::group(['middleware' => 'role:admin'], function () {
 ```
 
 ## Blade directives
-```php
+```text
 @hasrole('admin')
 I'm admin
 @else
