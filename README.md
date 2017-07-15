@@ -20,6 +20,12 @@ In your config/app.php at the Class Aliases
 'Permission' => DALTCORE\Permissions\Facade::class,
 ```
 
+In your app/Http/Kernel.php in $routeMiddleware
+```php
+'permission' => \DALTCORE\Permissions\Http\Middleware\CheckPermission::class,
+'role' => \DALTCORE\Permissions\Http\Middleware\CheckRole::class,
+```
+
 Publish migrations
 ```bash
 php artisan vendor:publish --tag=dpm-migrations
@@ -85,6 +91,13 @@ Permission::removePermission('admin');
 Remove a role
 ```php
 Permission::removeRole('admin');
+```
+
+## Middleware
+```php
+Route::group(['middleware' => 'permission:create-users'], function () {
+...
+Route::group(['middleware' => 'role:admin'], function () {
 ```
 
 ## License
