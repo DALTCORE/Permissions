@@ -50,7 +50,7 @@ Permission::addRole('admin');
 
 Add a permission
 ```php
-Permission::addPermission('create-users');
+Permission::addPermission('create-users', 'a small description');
 ```
 
 Link permission to role
