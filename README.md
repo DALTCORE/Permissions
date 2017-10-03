@@ -1,4 +1,6 @@
 # Permissions
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDALTCORE%2FPermissions.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FDALTCORE%2FPermissions?ref=badge_shield)
+
 
 Laravel permissions handler, on your own model
 
@@ -119,3 +121,6 @@ I cannot create users
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FDALTCORE%2FPermissions.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FDALTCORE%2FPermissions?ref=badge_large)
