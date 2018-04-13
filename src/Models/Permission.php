@@ -4,10 +4,11 @@ namespace DALTCORE\Permissions\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Role extends Model
+class Permission extends Model
 {
     protected $fillable = [
-        'name'
+        'name',
+        'description'
     ];
 
     protected $hidden = [
@@ -16,14 +17,4 @@ class Role extends Model
         'updated_at',
         'pivot'
     ];
-
-    /**
-     * Get permissions that are linked to this role
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function permissions()
-    {
-        return $this->belongsToMany(Permission::class);
-    }
 }
