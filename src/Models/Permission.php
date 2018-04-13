@@ -10,4 +10,11 @@ class Permission extends Model
         'name',
         'description'
     ];
+
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+        'pivot'
+    ];
 }
