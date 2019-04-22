@@ -26,7 +26,13 @@ trait Permissible
      */
     public function hasRole($name = null)
     {
-        if ($name !== null) {
+        if (is_array($name)) {
+            foreach ($name as $role) {
+                if ($this->roles->contains('name', $role) === true) {
+                    return true;
+                }
+            }
+        } elseif ($name !== null) {
             return $this->roles->contains('name', $name);
         }
 
@@ -42,7 +48,16 @@ trait Permissible
      */
     public function hasPermission($name)
     {
-        if ($name !== null) {
+        if (is_array($name)) {
+            foreach ($name as $find) {
+                foreach ($this->roles as $role) {
+                    if($role->permissions->contains('name', $find) === true)
+                    {
+                        return true;
+                    }
+                }
+            }
+        } elseif ($name !== null) {
             foreach ($this->roles as $role) {
                 if($role->permissions->contains('name', $name) === true)
                 {
