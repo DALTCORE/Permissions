@@ -72,24 +72,37 @@ trait Permissible
     /**
      * Assign role to user
      *
-     * @param string $name Name of the role
+     * @param string|array $name Name of the role
      *
      * @return object $this instance of model
      */
     public function giveRole($name)
     {
+        if (is_array($name)) {
+            foreach ($name as $k => $item) {
+                return Permission::linkUserToRole($this, $item);
+            }
+        }
+
         return Permission::linkUserToRole($this, $name);
     }
 
     /**
      * Drop role from user
      *
-     * @param string $name Name of the role
+     * @param string|array $name Name of the role
      *
      * @return object $this instance of model
      */
     public function dropRole($name)
     {
+        if (is_array($name))
+        {
+            foreach ($name as $k => $item) {
+                return Permission::takeRoleFromUser($this, $item);
+            }
+        }
+
         return Permission::takeRoleFromUser($this, $name);
     }
 
