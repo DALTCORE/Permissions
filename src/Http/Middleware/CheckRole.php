@@ -18,7 +18,7 @@ class CheckRole
 
         if(!$request->user()->hasRole($permission))
         {
-            return redirect()->route('cms.dashboard')->withError('You do not have the role '. $permission);
+            return redirect()->back()->withError('You do not have the role '. $permission);
         }
 
         return $next($request);
