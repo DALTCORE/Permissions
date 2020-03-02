@@ -18,7 +18,7 @@ class CheckPermission
 
         if(!$request->user()->hasPermission($permission))
         {
-            return redirect()->route('cms.dashboard')->withError('You do not have the permission '. $permission);
+            return redirect()->back()->withError('You do not have the permission '. $permission);
         }
 
         return $next($request);
